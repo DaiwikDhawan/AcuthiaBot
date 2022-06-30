@@ -49,10 +49,11 @@ namespace AcuthiaBot
 
         public async Task InstallCommandsAsync()
         {
+            _client.MessageReceived += OnMessageAsync;
+
             await _commands.AddModuleAsync(
                 assembly: Assembly.GetEntryAssembly(), 
                 services: _services);
-            _client.MessageReceived += OnMessageAsync;
         }
 
         private async Task OnMessageAsync(SocketMessage messageSent)
